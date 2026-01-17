@@ -4,23 +4,21 @@
 <title>Locked Love Letter</title>
 
 <style>
-body {
+body{
   background:#1a0010;
   color:#ffb3c6;
   font-family:Arial;
   text-align:center;
   padding-top:10vh;
 }
-
-.box {
+.box{
   background:#300018;
   width:60%;
   margin:auto;
   padding:30px;
   border-radius:15px;
 }
-
-button {
+button{
   margin-top:20px;
   padding:10px 20px;
   border:none;
@@ -29,8 +27,7 @@ button {
   color:white;
   cursor:pointer;
 }
-
-.flag {
+.flag{
   color:#7CFFB2;
   margin-top:20px;
 }
@@ -43,11 +40,7 @@ button {
 <h1>Locked Love Letter</h1>
 
 <p>
-Love is never written in just one word.
-</p>
-
-<p>
-Some words come first. Some stay in the middle. Some close the message.
+Some things only open when three parts are right.
 </p>
 
 <button onclick="openLetter()">Open Letter</button>
@@ -60,45 +53,44 @@ Some words come first. Some stay in the middle. Some close the message.
 <script>
 function openLetter(){
 
-  const p = new URLSearchParams(window.location.search);
+  const q = new URLSearchParams(location.search);
 
-  let one = p.get("a");
-  let two = p.get("b");
-  let three = p.get("c");
+  let x = q.get("x");
+  let y = q.get("y");
+  let z = q.get("z");
 
-  let out = document.getElementById("msg");
+  let box = document.getElementById("msg");
 
-  if(!one || !two || !three){
-    out.innerText = "The letter is still sealed.";
+  if(!x || !y || !z){
+    box.innerText = "The letter stays closed.";
     return;
   }
 
-  let phrase = one + "_" + two + "_" + three;
+  let key = (x + y + z);
 
-  if(phrase === "love_opens_letters"){
+  if(key === "314"){
 
-    let start = [70,76,65,71,123];
-    let end = [125];
+    let data = [
+      60,66,55,61,113,
+      118,111,118,101,95,
+      111,112,101,110,115,95,
+      108,101,116,116,101,114,115,
+      115
+    ];
 
-    let flag = "";
+    let out = "";
 
-    for(let i=0;i<start.length;i++){
-      flag += String.fromCharCode(start[i]);
+    for(let i=0;i<data.length;i++){
+      out += String.fromCharCode(data[i] + 10);
     }
 
-    flag += phrase;
-
-    for(let i=0;i<end.length;i++){
-      flag += String.fromCharCode(end[i]);
-    }
-
-    out.innerHTML = "<div class='flag'>" + flag + "</div>";
+    box.innerHTML = "<div class='flag'>" + out + "</div>";
 
   } else {
-    out.innerText = "Those words don’t belong together.";
+    box.innerText = "The pieces don’t align.";
   }
 }
 </script>
 
 </body>
-</html>
+</html
