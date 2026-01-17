@@ -1,74 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The Locked Love Letter</title>
+<title>Locked Love Letter</title>
 <style>
 body {
-  background:#200012;
-  color:#ffb6c9;
-  font-family: Arial;
+  background:#1a0010;
+  color:#ffb3c6;
+  font-family:Arial;
   text-align:center;
   padding-top:10vh;
 }
-.card {
+.box {
+  background:#300018;
   width:60%;
   margin:auto;
-  background:#300018;
   padding:30px;
   border-radius:15px;
 }
-input {
-  padding:10px;
-  width:60%;
-  border-radius:10px;
-  border:none;
-}
-button {
-  margin-top:15px;
-  padding:10px 20px;
-  border:none;
-  border-radius:15px;
-  background:#ff4d7a;
-  color:white;
-}
-#result {
-  margin-top:20px;
-  color:#7CFFB2;
-}
+.flag { color:#7CFFB2; margin-top:20px; }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-<h1> The Locked Love Letter</h1>
+<div class="box">
+<h1> Locked Love Letter</h1>
 
 <p>
-Cupid locked his letter with a single word.<br>
-The poem holds the key.
+Cupid sealed this letter.<br>
+Only the right path will open it.
 </p>
 
-<p>
-<b>L</b>ove waits in silence.<br>
-<b>O</b>nly hearts understand.<br>
-<b>V</b>ows never fade.<br>
-<b>E</b>ternity remembers.
-</p>
+<div id="msg"></div>
 
-<input id="key" placeholder="Enter the secret word">
-<br>
-<button onclick="unlock()">Open Letter</button>
-
-<div id="result"></div>
+<p style="opacity:0.6;">Made with love.</p>
 </div>
 
+<!-- The seal listens in the URL: ?key= -->
+
 <script>
-function unlock(){
-  if(document.getElementById("key").value.toLowerCase()=="love"){
-    document.getElementById("result").innerText="FLAG{love_unlocks_letters}";
-  } else {
-    document.getElementById("result").innerText="The letter stays closed.";
-  }
+const key = new URLSearchParams(window.location.search).get("key");
+const msg = document.getElementById("msg");
+
+if(!key){
+  msg.innerText = " The letter is still sealed.";
+}
+else if(key === "love"){
+  msg.innerHTML = "<div class='flag'>FLAG{love_opens_letters}</div>";
+}
+else{
+  msg.innerText = " The seal rejects this word.";
 }
 </script>
 
