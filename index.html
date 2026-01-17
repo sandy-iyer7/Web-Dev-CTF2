@@ -34,12 +34,6 @@ button {
   color:#7CFFB2;
   margin-top:20px;
 }
-
-.hint {
-  margin-top:15px;
-  font-size:0.95em;
-  opacity:0.7;
-}
 </style>
 </head>
 
@@ -49,42 +43,62 @@ button {
 <h1>Locked Love Letter</h1>
 
 <p>
-Cupid sealed this letter.<br>
-Only the right path and messenger can unlock it.
+Love is never written in just one word.
+</p>
+
+<p>
+Some words come first. Some stay in the middle. Some close the message.
 </p>
 
 <button onclick="openLetter()">Open Letter</button>
 
 <div id="msg"></div>
 
-<p class="hint">
-Love has a path… and a sender.
-</p>
-
 <p style="opacity:0.6;">Made with love.</p>
 </div>
 
-<!-- The seal listens for: ?path= -->
-<!-- Cupid never walks alone. -->
-
 <script>
 function openLetter(){
-  const path = new URLSearchParams(window.location.search).get("path");
-  const from = new URLSearchParams(window.location.search).get("from");
-  const msg = document.getElementById("msg");
 
-  if(!path || !from){
-    msg.innerText = "The letter remains sealed.";
+  const p = new URLSearchParams(window.location.search);
+
+  let one = p.get("a");
+  let two = p.get("b");
+  let three = p.get("c");
+
+  let out = document.getElementById("msg");
+
+  if(!one || !two || !three){
+    out.innerText = "The letter is still sealed.";
+    return;
   }
-  else if(path === "heart" && from === "cupid"){
-    msg.innerHTML = "<div class='flag'>FLAG{love_opens_letters}</div>";
-  }
-  else{
-    msg.innerText = "The letter rejects this attempt.";
+
+  let phrase = one + "_" + two + "_" + three;
+
+  if(phrase === "love_opens_letters"){
+
+    let start = [70,76,65,71,123];
+    let end = [125];
+
+    let flag = "";
+
+    for(let i=0;i<start.length;i++){
+      flag += String.fromCharCode(start[i]);
+    }
+
+    flag += phrase;
+
+    for(let i=0;i<end.length;i++){
+      flag += String.fromCharCode(end[i]);
+    }
+
+    out.innerHTML = "<div class='flag'>" + flag + "</div>";
+
+  } else {
+    out.innerText = "Those words don’t belong together.";
   }
 }
 </script>
 
 </body>
 </html>
-
