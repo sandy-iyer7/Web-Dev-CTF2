@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Locked Love Letter</title>
+
 <style>
 body {
   background:#1a0010;
@@ -10,6 +11,7 @@ body {
   text-align:center;
   padding-top:10vh;
 }
+
 .box {
   background:#300018;
   width:60%;
@@ -17,7 +19,21 @@ body {
   padding:30px;
   border-radius:15px;
 }
-.flag { color:#7CFFB2; margin-top:20px; }
+
+button {
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:12px;
+  background:#ff4d7a;
+  color:white;
+  cursor:pointer;
+}
+
+.flag {
+  color:#7CFFB2;
+  margin-top:20px;
+}
 </style>
 </head>
 
@@ -31,6 +47,8 @@ Cupid sealed this letter.<br>
 Only the right path will open it.
 </p>
 
+<button onclick="checkSeal()">Open Letter</button>
+
 <div id="msg"></div>
 
 <p style="opacity:0.6;">Made with love.</p>
@@ -39,17 +57,21 @@ Only the right path will open it.
 <!-- The seal listens in the URL: ?key= -->
 
 <script>
-const key = new URLSearchParams(window.location.search).get("key");
-const msg = document.getElementById("msg");
+function checkSeal(){
+  const key = new URLSearchParams(window.location.search).get("key");
+  const msg = document.getElementById("msg");
 
-if(!key){
-  msg.innerText = " The letter is still sealed.";
-}
-else if(key === "love"){
-  msg.innerHTML = "<div class='flag'>FLAG{love_opens_letters}</div>";
-}
-else{
-  msg.innerText = " The seal rejects this word.";
+  if(!key){
+    msg.innerText = " The letter is still sealed.";
+  }
+  else if(key === "love"){
+    const a = String.fromCharCode(70,76,65,71); // FLAG
+    const b = "{love_opens_letters}";
+    msg.innerHTML = "<div class='flag'>" + a + b + "</div>";
+  }
+  else{
+    msg.innerText = " The seal rejects this word.";
+  }
 }
 </script>
 
