@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Locked Love Letter</title>
+<style>
+body {
+  background:#200012;
+  color:#ffb6c9;
+  font-family: Arial;
+  text-align:center;
+  padding-top:10vh;
+}
+.card {
+  width:60%;
+  margin:auto;
+  background:#300018;
+  padding:30px;
+  border-radius:15px;
+}
+input {
+  padding:10px;
+  width:60%;
+  border-radius:10px;
+  border:none;
+}
+button {
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  border-radius:15px;
+  background:#ff4d7a;
+  color:white;
+}
+#result {
+  margin-top:20px;
+  color:#7CFFB2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1> The Locked Love Letter</h1>
+
+<p>
+Cupid locked his letter with a single word.<br>
+The poem holds the key.
+</p>
+
+<p>
+<b>L</b>ove waits in silence.<br>
+<b>O</b>nly hearts understand.<br>
+<b>V</b>ows never fade.<br>
+<b>E</b>ternity remembers.
+</p>
+
+<input id="key" placeholder="Enter the secret word">
+<br>
+<button onclick="unlock()">Open Letter</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+function unlock(){
+  if(document.getElementById("key").value.toLowerCase()=="love"){
+    document.getElementById("result").innerText="FLAG{love_unlocks_letters}";
+  } else {
+    document.getElementById("result").innerText="The letter stays closed.";
+  }
+}
+</script>
+
+</body>
+</html>
