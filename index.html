@@ -40,7 +40,7 @@ button{
 <h1>Locked Love Letter</h1>
 
 <p>
-Some things only open when three parts are right.
+Some things only open when every piece is right.
 </p>
 
 <button onclick="openLetter()">Open Letter</button>
@@ -66,16 +66,14 @@ function openLetter(){
     return;
   }
 
-  let key = (x + y + z);
-
-  if(key === "314"){
+  if(x + y + z === "314"){
 
     let data = [
       60,66,55,61,113,
-      118,111,118,101,95,
-      111,112,101,110,115,95,
-      108,101,116,116,101,114,115,
-      115
+      98,101,108,91,85,
+      101,102,91,100,105,
+      85,98,91,106,106,
+      91,104,105,115
     ];
 
     let out = "";
@@ -93,4 +91,4 @@ function openLetter(){
 </script>
 
 </body>
-</html
+</html>
