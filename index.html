@@ -50,40 +50,40 @@ button {
 
 <p>
 Cupid sealed this letter.<br>
-Only the right path will open it.
+Only the right path unlocks it.
 </p>
 
-<button onclick="checkSeal()">Open Letter</button>
+<button onclick="openLetter()">Open Letter</button>
 
 <div id="msg"></div>
 
 <p class="hint">
-If the letter stays closed, perhaps the path you chose is wrong.
+Sometimes the address knows more than the page.
 </p>
 
 <p style="opacity:0.6;">Made with love.</p>
 </div>
 
-<!-- The seal listens in the URL: ?key= -->
+<!-- The seal listens for: ?path= -->
+<!-- Cupid always follows his heart. -->
 
 <script>
-function checkSeal(){
-  const key = new URLSearchParams(window.location.search).get("key");
+function openLetter(){
+  const path = new URLSearchParams(window.location.search).get("path");
   const msg = document.getElementById("msg");
 
-  if(!key){
-    msg.innerText = "The letter is still sealed.";
+  if(!path){
+    msg.innerText = "The letter remains sealed.";
   }
-  else if(key === "love"){
-    const a = String.fromCharCode(70,76,65,71); // FLAG
-    const b = "{love_opens_letters}";
-    msg.innerHTML = "<div class='flag'>" + a + b + "</div>";
+  else if(path === "heart"){
+    msg.innerHTML = "<div class='flag'>FLAG{love_opens_letters}</div>";
   }
   else{
-    msg.innerText = "The seal rejects this word.";
+    msg.innerText = "This path leads nowhere.";
   }
 }
 </script>
 
 </body>
 </html>
+
