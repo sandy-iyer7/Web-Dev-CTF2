@@ -30,6 +30,7 @@ button{
 .flag{
   color:#7CFFB2;
   margin-top:20px;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -68,18 +69,21 @@ function openLetter(){
 
   if(x + y + z === "314"){
 
+    // Encoded flag (cannot decode without key)
     let data = [
-      60,66,55,61,113,
-      98,101,108,91,85,
-      101,102,91,100,105,
-      85,98,91,106,106,
-      91,104,105,115
+      120,132,110,122,226,
+      196,202,216,182,170,
+      202,204,182,200,210,
+      170,196,182,212,212,
+      182,208,210,230
     ];
+
+    let key = parseInt(x) + parseInt(y) + parseInt(z);
 
     let out = "";
 
     for(let i=0;i<data.length;i++){
-      out += String.fromCharCode(data[i] + 10);
+      out += String.fromCharCode((data[i] - key) / 2);
     }
 
     box.innerHTML = "<div class='flag'>" + out + "</div>";
